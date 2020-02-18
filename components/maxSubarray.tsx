@@ -14,7 +14,7 @@ const NumberBox = ({ number: number }) => (
   </span>
 );
 
-const NumberBoxList = ({ numbers }) => (
+const NumberBoxGroup = ({ numbers }) => (
   <>
     {numbers.map((number, index) => (
       <span key={index}>
@@ -41,7 +41,7 @@ interface Step {
   bestSum: number;
 }
 
-const maxSubArrayWithSteps = (
+const stepsForMaxSubArray = (
   numbers: Array<number>
 ): { bestSum: number; steps: Array<Step> } => {
   let currentGroup = [];
@@ -77,7 +77,7 @@ const Steps = ({ steps }) => (
           <NumberBox number={step.number} />
         </div>
         <div key={`group_${index}`}>
-          <NumberBoxList numbers={step.currentGroup} />
+          <NumberBoxGroup numbers={step.currentGroup} />
         </div>
         <div key={`currentSum_${index}`}>{step.currentSum}</div>
         <div key={`bestSum_${index}`}>{step.bestSum}</div>
@@ -87,8 +87,9 @@ const Steps = ({ steps }) => (
       .steps-grid {
         margin: 0 20px;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, auto);
         justify-content: space-between;
+        justify-items: center;
         row-gap: 10px;
       }
       .column-heading {
@@ -103,9 +104,8 @@ interface MaxSubarrayProps {
   numbers: Array<number>;
 }
 
-const MaxSubarray = (props: MaxSubarrayProps) => {
-  const { numbers } = props;
-  const { bestSum, steps } = maxSubArrayWithSteps(numbers);
+const MaxSubarray = ({ numbers }: MaxSubarrayProps) => {
+  const { bestSum, steps } = stepsForMaxSubArray(numbers);
   return (
     <div className="algorithm">
       <strong>
