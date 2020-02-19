@@ -1,3 +1,5 @@
+import React from "react";
+
 // var lengthOfLastWord = function(s) {
 //   let result = 0;
 //   let index = s.length - 1;
@@ -47,12 +49,10 @@ const Steps = ({ steps }) => (
     <div className="column-heading">char</div>
     <div className="column-heading">lastWordLength</div>
     {steps.map(({ currentChar, lastWordLength }, index) => (
-      <>
-        <div key={`char_${index}`} className="char">
-          {currentChar}
-        </div>
-        <div key={`lastWordLength_${index}`}>{lastWordLength}</div>
-      </>
+      <React.Fragment key={index}>
+        <div className="char">{currentChar}</div>
+        {lastWordLength}
+      </React.Fragment>
     ))}
     <style jsx>{`
       .steps-grid {

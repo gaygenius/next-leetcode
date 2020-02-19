@@ -1,18 +1,16 @@
 import Head from "next/head";
 import MaxSubarray from "../components/maxSubarray";
 import LengthOfLastWord from "../components/lengthOfLastWord";
-import DateAndTimeShowcase, {
-  formatLongDateAndTime
-} from "../components/dateAndTimeShowcase";
 
 const Home = () => {
   const now = Date.now();
   return (
     <div className="home">
       <Head>
-        <title>Gaygenius</title>
+        <title>My LeetCode Answers</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <h1>My LeetCode Answers</h1>
       <h2>Algorithms</h2>
       <h3>
         Maximum subarray problem —

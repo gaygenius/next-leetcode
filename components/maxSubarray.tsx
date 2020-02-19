@@ -1,3 +1,15 @@
+import React from "react";
+
+// var maxSubArray = function(nums) {
+//   let bestSum = -Infinity;
+//   let currentSum = 0;
+//   nums.forEach(x => {
+//     currentSum = Math.max(x, currentSum + x);
+//     bestSum = Math.max(bestSum, currentSum);
+//   });
+//   return bestSum;
+// };
+
 const NumberBox = ({ number: number }) => (
   <span className="numberBox">
     {number}
@@ -23,16 +35,6 @@ const NumberBoxGroup = ({ numbers }) => (
     ))}
   </>
 );
-
-// var maxSubArray = function(nums) {
-//   let bestSum = -Infinity;
-//   let currentSum = 0;
-//   nums.forEach(x => {
-//     currentSum = Math.max(x, currentSum + x);
-//     bestSum = Math.max(bestSum, currentSum);
-//   });
-//   return bestSum;
-// };
 
 interface Step {
   number: number;
@@ -72,16 +74,14 @@ const Steps = ({ steps }) => (
     <div className="column-heading">group sum</div>
     <div className="column-heading">max sum so far</div>
     {steps.map((step, index) => (
-      <>
-        <div key={`number_${index}`}>
-          <NumberBox number={step.number} />
-        </div>
-        <div key={`group_${index}`}>
+      <React.Fragment key={index}>
+        <NumberBox number={step.number} />
+        <div>
           <NumberBoxGroup numbers={step.currentGroup} />
         </div>
-        <div key={`currentSum_${index}`}>{step.currentSum}</div>
-        <div key={`bestSum_${index}`}>{step.bestSum}</div>
-      </>
+        <div>{step.currentSum}</div>
+        <div>{step.bestSum}</div>
+      </React.Fragment>
     ))}
     <style jsx>{`
       .steps-grid {
